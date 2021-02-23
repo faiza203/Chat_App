@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon package.json"
-    },
+    "start": "nodemon server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/faiza203/Chat_App.git"
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/faiza203/Chat_App#readme",
   "dependencies": {
-    "cors": "npm:undefined@*",
+    "cors": "*",
     "express": "^4.17.1",
     "socket.io": "^3.1.1"
   }
