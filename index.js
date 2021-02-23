@@ -1,5 +1,6 @@
 const app = require("express")();
-let http = require("http").Server(app);
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
 const port = process.env.PORT || 8000;
 app.set("view engine", "hbs");
@@ -11,4 +12,8 @@ app.get("/", (req, res) => {
 
 http.listen(port, () => {
   console.log(`Text Chat App in running on ${port}`);
+});
+
+io.on("connection", () => {
+  console.log("Connected");
 });
