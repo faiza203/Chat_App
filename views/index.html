@@ -21,7 +21,7 @@
             <div class="card-header text-white">Chat App</div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item" v-for="message in messages">
-                <span class="{'float-right' : message.type === 0}">
+                <span :class="{'float-end' : message.type === 0}">
                   {{message.message}}
                 </span>
               </li>
@@ -35,6 +35,9 @@
                     v-model="newmessage"
                     placeholder="Type Here Name"
                   />
+                  <small class="text-white">
+                    {{typing}}
+                  </small>
                 </div>
               </form>
             </div>
@@ -52,7 +55,7 @@
       data: {
         newmessage: null,
         messages: [],
-        typing: false,
+        typing: "",
       },
       methods: {
         send() {
@@ -75,10 +78,10 @@
           this.messages.push({ message: data, type: 1 });
         });
         socket.on("typing", (data) => {
-          this.typing = true;
+          this.typing = "User is Typing";
         });
         socket.on("stopTyping", (data) => {
-          this.typing = false;
+          this.typing = "";
         });
       },
     });
