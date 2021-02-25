@@ -19,6 +19,23 @@
         <div class="col-lg-6 offset-lg-3">
           <div class="card bg-info">
             <div class="card-header text-white">Chat App</div>
+            <div>
+              <form @submit.prevent="addName" class="card-body">
+                <div class="mb-3 form-group row">
+                  <input
+                    type="text"
+                    class="form-control col-9"
+                    v-model="name"
+                    placeholder="Give your name"
+                  />
+                  <input
+                    type="submit"
+                    value="Add"
+                    class="btn btn-sm btn-info ml-1"
+                  />
+                </div>
+              </form>
+            </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item" v-for="message in messages">
                 <span :class="{'float-end' : message.type === 0}">
@@ -30,14 +47,12 @@
               <form @submit.prevent="send">
                 <div class="mb-3 form-group">
                   <input
-                    type="name"
+                    type="text"
                     class="form-control"
                     v-model="newmessage"
-                    placeholder="Type Here Name"
+                    placeholder="Type Here"
                   />
-                  <small class="text-white">
-                    {{typing}}
-                  </small>
+                  <small class="text-white"> {{typing}} </small>
                 </div>
               </form>
             </div>
@@ -56,6 +71,7 @@
         newmessage: null,
         messages: [],
         typing: "",
+        name: "null",
       },
       methods: {
         send() {
