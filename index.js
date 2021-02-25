@@ -14,7 +14,10 @@ http.listen(port, () => {
 
 io.on("connection", (socket) => {
   console.log("Connected");
-  socket.on("disconnect" , () => {
+  socket.on("disconnection" , () => {
     console.log("DisConnect");
+  })
+  socket.on("Created" , (data) => {
+    socket.broadcast.emit("Created", (data))
   })
 });
