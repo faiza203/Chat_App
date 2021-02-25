@@ -13,10 +13,7 @@ http.listen(port, () => {
 });
 
 io.on("connection", (socket) => {
-  console.log("Connected");
-  socket.on("disconnection", () => {
-    console.log("DisConnect");
-  });
+  socket.on("disconnection", () => {});
   socket.on("Created", (data) => {
     socket.broadcast.emit("Created", data);
   });
@@ -31,5 +28,8 @@ io.on("connection", (socket) => {
   });
   socket.on("joined", (data) => {
     socket.broadcast.emit("joined", data);
+  });
+  socket.on("leaved", (data) => {
+    socket.broadcast.emit("leaved", data);
   });
 });
