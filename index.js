@@ -18,9 +18,15 @@ io.on("connection", (socket) => {
     console.log("DisConnect");
   });
   socket.on("Created", (data) => {
-    socket.broadcast.emit("Created", (data));
+    socket.broadcast.emit("Created", data);
   });
   socket.on("chat-message", (data) => {
-    socket.broadcast.emit("Created", (data));
+    socket.broadcast.emit("chat-message", data);
+  });
+  socket.on("typing", (data) => {
+    socket.broadcast.emit("typing", data);
+  });
+  socket.on("stopTyping", (data) => {
+    socket.broadcast.emit("stopTyping", data);
   });
 });

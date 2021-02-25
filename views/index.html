@@ -52,6 +52,7 @@
       data: {
         newmessage: null,
         messages: [],
+        typing: false,
       },
       methods: {
         send() {
@@ -61,14 +62,23 @@
         },
       },
       watch: {
-          newmessage(value){
-              value ? socket.emit("typing") : socket.emit("stopTyping")
-          } 
+        newmessage(value) {
+          value ? socket.emit("typing") : socket.emit("stopTyping");
+        },
       },
       created() {
         socket.emit("Created", this.newmessage);
-        socket.on("Created", (data) => {
+        socket.on("Created", () => {
+          console.log("Created");
+        });
+        socket.on("chat-message", (data) => {
           this.messages.push({ message: data, type: 1 });
+        });
+        socket.on("typing", (data) => {
+          this.typing = true;
+        });
+        socket.on("stopTyping", (data) => {
+          this.typing = false;
         });
       },
     });
