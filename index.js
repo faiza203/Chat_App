@@ -29,4 +29,7 @@ io.on("connection", (socket) => {
   socket.on("stopTyping", (data) => {
     socket.broadcast.emit("stopTyping", data);
   });
+  socket.on("joined", (data) => {
+    socket.broadcast.emit("joined", data);
+  });
 });
