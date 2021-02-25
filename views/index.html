@@ -21,7 +21,9 @@
             <div class="card-header text-white">Chat App</div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item" v-for="message in messages">
-                {{message}}
+                <span :class="{'float-right' : message.type === 0}">
+                  {{message.message}} 
+                </span>
               </li>
             </ul>
             <div class="card-body">
@@ -51,17 +53,17 @@
         newmessage: null,
         messages: [],
       },
-      methods : {
-          send(){
-            this.messages.push(this.newmessage)  
-            socket.emit("chat-messages" , this.newmessage)
-            this.newmessage = null
-          } 
+      methods: {
+        send() {
+          this.messages.push({ message: this.newmessage, type: 0 });
+          socket.emit("chat-messages", this.newmessage);
+          this.newmessage = null;
+        },
       },
       created() {
-        socket.emit("Created", "sarthak");
+        socket.emit("Created", this.newmessage);
         socket.on("Created", (data) => {
-          console.log(data);
+          this.messages.push({ message: data, type: 1 });
         });
       },
     });

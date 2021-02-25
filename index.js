@@ -14,10 +14,13 @@ http.listen(port, () => {
 
 io.on("connection", (socket) => {
   console.log("Connected");
-  socket.on("disconnection" , () => {
+  socket.on("disconnection", () => {
     console.log("DisConnect");
-  })
-  socket.on("Created" , (data) => {
-    socket.broadcast.emit("Created", (data))
-  })
+  });
+  socket.on("Created", (data) => {
+    socket.broadcast.emit("Created", data);
+  });
+  socket.on("chat-messaage", (data) => {
+    socket.broadcast.emit("Created", data);
+  });
 });
