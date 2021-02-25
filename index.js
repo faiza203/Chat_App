@@ -18,9 +18,9 @@ io.on("connection", (socket) => {
     console.log("DisConnect");
   });
   socket.on("Created", (data) => {
-    socket.broadcast.emit("Created", data);
+    socket.broadcast.emit("Created", (data));
   });
-  socket.on("chat-messaage", (data) => {
-    socket.broadcast.emit("Created", data);
+  socket.on("chat-message", (data) => {
+    socket.broadcast.emit("Created", (data));
   });
 });

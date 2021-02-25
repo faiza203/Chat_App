@@ -21,8 +21,8 @@
             <div class="card-header text-white">Chat App</div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item" v-for="message in messages">
-                <span :class="{'float-right' : message.type === 0}">
-                  {{message.message}} 
+                <span class="{'float-right' : message.type === 0}">
+                  {{message.message}}
                 </span>
               </li>
             </ul>
@@ -56,9 +56,14 @@
       methods: {
         send() {
           this.messages.push({ message: this.newmessage, type: 0 });
-          socket.emit("chat-messages", this.newmessage);
+          socket.emit("chat-message", this.newmessage);
           this.newmessage = null;
         },
+      },
+      watch: {
+          newmessage(value){
+              value ? socket.emit("typing") : socket.emit("stopTyping")
+          } 
       },
       created() {
         socket.emit("Created", this.newmessage);
