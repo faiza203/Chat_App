@@ -3,11 +3,9 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
 const port = process.env.PORT || 8000;
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.sendFile(`${__dirname}/views/index.html`);
 });
 
 http.listen(port, () => {
