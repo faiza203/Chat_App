@@ -13,7 +13,10 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    let socket = {};
+    const connection = new WebSocket("http://localhost:8000");
+    connection.onopen = () => {
+        console.log("Socket is open")
+    }
 </script>
 
 </html>

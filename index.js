@@ -14,6 +14,9 @@ http.listen(port, () => {
   console.log(`Text Chat App in running on ${port}`);
 });
 
-io.on("connection", () => {
+io.on("connection", (socket) => {
   console.log("Connected");
+  socket.on("disconnect" , () => {
+    console.log("DisConnect");
+  })
 });
