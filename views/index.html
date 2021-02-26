@@ -21,19 +21,20 @@
             <div v-for="item in info">{{item.name}} {{item.type}}</div>
           </div>
           <div v-if="!ready">
-            <h4>Set your name</h4>
+            <h4 class="text-center mb-3 mt-3">Set your name</h4>
             <form @submit.prevent="addName">
-              <div class="mb-3 row">
+              <div class="mb-3">
                 <input
                   type="text"
-                  class="form-control col-9"
+                  class="col-9 d-inline 
+                  p-2"
                   v-model="name"
                   placeholder="Give your name"
                 />
                 <input
                   type="submit"
                   value="Add"
-                  class="btn btn-info btn-sm ml-1"
+                  class="btn btn-info ml-1 d-inline"
                 />
               </div>
             </form>
